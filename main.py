@@ -13,7 +13,7 @@ import json
 load_dotenv()
 
 # Initialize FastAPI app
-app = FastAPI(title="IIT Madras Data Science ")
+app = FastAPI(title="IIT Madras Data Science")
 
 # Add CORS middleware
 app.add_middleware(
@@ -51,7 +51,25 @@ def extract_zip_file(zip_path: str) -> Optional[str]:
         print(f"Error extracting ZIP file: {str(e)}")
         return None
 
-@app.post("/api/")
+@app.get("/")
+async def root():
+    """Welcome endpoint"""
+    return {
+        "message": "Welcome to IIT Madras Data Science Assignment Helper API",
+        "usage": {
+            "endpoint": "/",
+            "method": "POST",
+            "parameters": {
+                "question": "Your assignment question",
+                "file": "Optional file upload (CSV or ZIP)"
+            },
+            "example": {
+                "curl": 'curl -X POST "https://your-app.vercel.app/" -H "Content-Type: multipart/form-data" -F "question=Your question here" -F "file=@your_file.csv"'
+            }
+        }
+    }
+
+@app.post("/")
 async def answer_question(
     question: str = Form(...),
     file: Optional[UploadFile] = File(None)
@@ -111,4 +129,4 @@ async def answer_question(
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000) 
+    uvicorn.run(app, host="0.0.0.0", port=8000)
