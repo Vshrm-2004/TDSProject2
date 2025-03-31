@@ -13,7 +13,7 @@ import json
 load_dotenv()
 
 # Initialize FastAPI app
-app = FastAPI(title="IIT Madras Data Science Assignment Helper")
+app = FastAPI(title="IIT Madras Data Science ")
 
 # Add CORS middleware
 app.add_middleware(
