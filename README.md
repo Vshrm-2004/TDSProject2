@@ -1,4 +1,4 @@
-# IIT Madras Data Science Assignment Helper
+# IIT Madras Data Science 
 
 An LLM-based API that helps answer questions from IIT Madras' Online Degree in Data Science course assignments.
 
